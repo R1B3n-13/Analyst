@@ -84,6 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
         indexLabel = new javax.swing.JLabel();
         frButton = new javax.swing.JButton();
         sleButton = new javax.swing.JButton();
+        calcSlePanel = new com.analyst.gui.SlePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -250,6 +251,11 @@ public class MainFrame extends javax.swing.JFrame {
         sleButton.setBorderPainted(false);
         sleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sleButton.setBackground(new java.awt.Color(101, 89, 94, 50));
+        sleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sleButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout indexPanelLayout = new javax.swing.GroupLayout(indexPanel);
         indexPanel.setLayout(indexPanelLayout);
@@ -283,6 +289,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanel.add(indexPanel, "indexPanel");
         indexPanel.getAccessibleContext().setAccessibleName("indexPanel");
+
+        calcSlePanel.setName("calcSlePanel"); // NOI18N
+        mainPanel.add(calcSlePanel, "card4");
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -361,6 +370,12 @@ public class MainFrame extends javax.swing.JFrame {
         setExtendedState(extendedState);
     }//GEN-LAST:event_formWindowDeiconified
 
+    private void sleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleButtonMouseClicked
+        mainPanel.nextSlidingPanel(10, calcSlePanel, JSlidingPane.Direction.Left);
+        titleBar.setBackground(new Color(0, 14, 26));
+        titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+    }//GEN-LAST:event_sleButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +409,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLabel;
+    private com.analyst.gui.SlePanel calcSlePanel;
     private javax.swing.JLabel closeLabel;
     private javax.swing.JButton frButton;
     private javax.swing.JLabel indexLabel;
