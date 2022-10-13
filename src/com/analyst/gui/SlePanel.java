@@ -1,10 +1,13 @@
 package com.analyst.gui;
 
+import com.analyst.sle.NaiveGaussian;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -58,6 +61,8 @@ public class SlePanel extends javax.swing.JPanel {
         matScrollPane = new javax.swing.JScrollPane();
         matTable = new javax.swing.JTable();
         resPanel = new javax.swing.JPanel();
+        resScrollPane = new javax.swing.JScrollPane();
+        resTable = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -85,7 +90,7 @@ public class SlePanel extends javax.swing.JPanel {
             .addGroup(sleNorthPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(sleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
                 .addComponent(sleCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -108,16 +113,31 @@ public class SlePanel extends javax.swing.JPanel {
         sleRunButton.setText("Run");
         sleRunButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         sleRunButton.setPreferredSize(new java.awt.Dimension(93, 31));
+        sleRunButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sleRunButtonMouseClicked(evt);
+            }
+        });
 
         sleClearButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         sleClearButton.setForeground(new java.awt.Color(177, 191, 222));
         sleClearButton.setText("Clear");
         sleClearButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sleClearButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sleClearButtonMouseClicked(evt);
+            }
+        });
 
         sleResetButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         sleResetButton.setForeground(new java.awt.Color(177, 191, 222));
         sleResetButton.setText("Reset");
         sleResetButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sleResetButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sleResetButtonMouseClicked(evt);
+            }
+        });
 
         unknownTextField.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         unknownTextField.setForeground(new java.awt.Color(177, 191, 222));
@@ -138,7 +158,7 @@ public class SlePanel extends javax.swing.JPanel {
                 .addComponent(sleClearButton)
                 .addGap(18, 18, 18)
                 .addComponent(sleResetButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
                 .addComponent(unknownLabel)
                 .addGap(18, 18, 18)
                 .addComponent(unknownTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,7 +185,8 @@ public class SlePanel extends javax.swing.JPanel {
         matPanel.setBackground(new java.awt.Color(0, 23, 39));
         matPanel.setVisible(false);
 
-        matTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        matTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(177, 191, 222), 3));
+        matTable.setFont(new java.awt.Font("Roboto", 0, 15)); // NOI18N
         matTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -196,7 +217,7 @@ public class SlePanel extends javax.swing.JPanel {
             matPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(matPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(matScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                .addComponent(matScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
         );
         matPanelLayout.setVerticalGroup(
             matPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,16 +227,35 @@ public class SlePanel extends javax.swing.JPanel {
         sleCenterPanel.add(matPanel);
 
         resPanel.setBackground(new java.awt.Color(0, 23, 39));
+        resPanel.setVisible(false);
+
+        resTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(177, 191, 222), 3));
+        resTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        resTable.setFillsViewportHeight(true);
+        resTable.setGridColor(new java.awt.Color(177, 191, 222));
+        resTable.setRowSelectionAllowed(false);
+        resTable.setShowGrid(true);
+        resScrollPane.setViewportView(resTable);
 
         javax.swing.GroupLayout resPanelLayout = new javax.swing.GroupLayout(resPanel);
         resPanel.setLayout(resPanelLayout);
         resPanelLayout.setHorizontalGroup(
             resPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addComponent(resScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
         resPanelLayout.setVerticalGroup(
             resPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+            .addComponent(resScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         sleCenterPanel.add(resPanel);
@@ -224,25 +264,95 @@ public class SlePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sleCreateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleCreateButtonMouseClicked
-        Integer row = Integer.valueOf(unknownTextField.getText());
-        String[] title = new String[row + 1];
-        for (int i = 0; i < row; i++) {
-            title[i] = "x" + String.valueOf(i + 1);
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            int row = Integer.parseInt(unknownTextField.getText());
+            if (row < 16) {
+                String[] title = new String[row + 1];
+                for (int i = 0; i < row; i++) {
+                    title[i] = "x" + String.valueOf(i + 1);
+                }
+                title[row] = "const";
+                DefaultTableModel modelMat = new DefaultTableModel(title, row);
+                DefaultTableModel modelRes = new DefaultTableModel(title, row);
+                matTable.setModel(modelMat);
+                resTable.setModel(modelRes);
+                matTable.setRowHeight(matTable.getHeight() / row);
+                resTable.setRowHeight(resTable.getHeight() / row);
+                if (row == 14 || row == 15) {
+                    matTable.setRowHeight(row - 1, matTable.getHeight() / row + 5);
+                    resTable.setRowHeight(row - 1, resTable.getHeight() / row + 5);
+                }
+                if (row == 6 || row == 8 || row == 9 || row == 12) {
+                    matTable.setRowHeight(row - 1, matTable.getHeight() / row + 3);
+                    resTable.setRowHeight(row - 1, resTable.getHeight() / row + 3);
+                }
+                matScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                matPanel.setVisible(true);
+                repaint();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Please enter a number less than 16",
+                        "Warning!",
+                        JOptionPane.WARNING_MESSAGE);
+            }
         }
-        title[row] = "const";
-        DefaultTableModel model = new DefaultTableModel(title, row);
-        matTable.setModel(model);
-        matTable.setRowHeight(matTable.getHeight() / row);
-        matPanel.setVisible(true);
-        repaint();
     }//GEN-LAST:event_sleCreateButtonMouseClicked
 
+    private void sleResetButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleResetButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            matPanel.setVisible(false);
+            resPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_sleResetButtonMouseClicked
+
+    private void sleRunButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleRunButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            NaiveGaussian.run();
+            resPanel.setVisible(true);
+        }
+    }//GEN-LAST:event_sleRunButtonMouseClicked
+
+    private void sleClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleClearButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            int n = Integer.parseInt(unknownTextField.getText());
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    matTable.getModel().setValueAt(null, i, j);
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                matTable.getModel().setValueAt(null, i, n);
+            }
+
+            resPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_sleClearButtonMouseClicked
+
+    public static int getNoOfUns() {
+        return Integer.valueOf(unknownTextField.getText());
+    }
+
+    public static JTable getMat() {
+        return matTable;
+    }
+
+    public static JTable getRes() {
+        return resTable;
+    }
+
+    public static void setValue(double num, int i, int j) {
+        resTable.getModel().setValueAt(num, i, j);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel matPanel;
     private javax.swing.JScrollPane matScrollPane;
-    private javax.swing.JTable matTable;
+    private static javax.swing.JTable matTable;
     private javax.swing.JPanel resPanel;
+    private javax.swing.JScrollPane resScrollPane;
+    private static javax.swing.JTable resTable;
     private javax.swing.JPanel sleCenterPanel;
     private javax.swing.JButton sleClearButton;
     private javax.swing.JComboBox<String> sleComboBox;
@@ -252,6 +362,6 @@ public class SlePanel extends javax.swing.JPanel {
     private javax.swing.JButton sleRunButton;
     private javax.swing.JPanel sleSouthPanel;
     private javax.swing.JLabel unknownLabel;
-    private javax.swing.JTextField unknownTextField;
+    private static javax.swing.JTextField unknownTextField;
     // End of variables declaration//GEN-END:variables
 }
