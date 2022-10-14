@@ -32,9 +32,9 @@ public class LUDecomposition {
             for (int i = 0; i <= n; i++) {
                 for (int j = 0; j <= n; j++) {
                     if (sleComboBox.getSelectedIndex() == 2) {
-                        SlePanel.setValue(upper[i][j], i, j);
-                    } else {
                         SlePanel.setValue(lower[i][j], i, j);
+                    } else {
+                        SlePanel.setValue(upper[i][j], i, j);
                     }
                 }
             }
@@ -51,7 +51,7 @@ public class LUDecomposition {
     static void luDecomposition() {
         for (int i = 0; i <= n; i++) {
             for (int k = i; k <= n; k++) {
-                int sum = 0;
+                double sum = 0;
                 for (int j = 0; j < i; j++) {
                     sum += (lower[i][j] * upper[j][k]);
                 }
