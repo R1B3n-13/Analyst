@@ -7,6 +7,7 @@ package com.analyst.gui;
 import com.analyst.findroot.Bisection;
 import com.analyst.findroot.FalsePosition;
 import com.analyst.findroot.NewtonRaphson;
+import com.analyst.findroot.Secant;
 import java.awt.event.MouseEvent;
 
 /**
@@ -75,7 +76,7 @@ public class FrPanel extends javax.swing.JPanel {
 
         errorLabel.setFont(new java.awt.Font("Courier", 1, 24)); // NOI18N
         errorLabel.setForeground(new java.awt.Color(161, 131, 199));
-        errorLabel.setText("Tolerable Error:");
+        errorLabel.setText("Tolerable Error(%):");
         frNorthPanel.add(errorLabel);
         frNorthPanel.add(errorField);
 
@@ -197,6 +198,11 @@ public class FrPanel extends javax.swing.JPanel {
             } else if (frComboBox.getSelectedIndex() == 2) {
                 NewtonRaphson.run();
                 if (NewtonRaphson.flg) {
+                    resPanel.setVisible(true);
+                }
+            } else {
+                Secant.run();
+                if (Secant.flg) {
                     resPanel.setVisible(true);
                 }
             }

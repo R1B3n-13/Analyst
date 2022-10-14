@@ -66,7 +66,7 @@ public class Bisection {
         } else {
             while (running) {
                 double mid = (lo + hi) / 2;
-                appErr = ((mid - old) / mid) * 100;
+                appErr = Math.abs((mid - old) / mid) * 100;
 
                 list.add(new ArrayList<>());
                 list.get(itr).add(String.valueOf(itr + 1));
@@ -91,7 +91,7 @@ public class Bisection {
                     list.get(itr).add("null");
                 }
 
-                running = Math.abs(appErr) > tErr;
+                running = appErr > tErr;
 
                 if (f.calculate(mid) == 0) {
                     hi = mid;

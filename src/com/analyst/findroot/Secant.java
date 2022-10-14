@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.Function;
 
 /**
  *
  * @author R1B3n
  */
-public class NewtonRaphson {
+public class Secant {
 
     static Function f;
-    static Expression df;
-    static double assumedR, tErr;
+    static double x1, x2, tErr;
     static ArrayList<ArrayList<String>> list;
     static Object[][] data;
     public static boolean flg;
@@ -25,13 +23,14 @@ public class NewtonRaphson {
         try {
             flg = true;
             f = new Function("f", FrPanel.funcField.getText(), "x");
-            assumedR = Double.parseDouble(FrPanel.lowField.getText());
+            x1 = Double.parseDouble(FrPanel.lowField.getText());
+            x2 = Double.parseDouble(FrPanel.highField.getText());
             tErr = Double.parseDouble(FrPanel.errorField.getText());
             list = new ArrayList<ArrayList<String>>();
 
-            ntonRson();
+            secant();
 
-            Object[] title = {"Iteration", "Xᵢ", "Xᵢ₊₁", "f(Xᵢ₊₁)", "|εₐ| %"};
+            Object[] title = {"Iteration", "Xᵢ₋₁", "Xᵢ", "Xᵢ₊₁", "|εₐ| %"};
             data = new Object[list.size()][6];
 
             for (int i = 0; i < list.size(); i++) {
@@ -50,36 +49,38 @@ public class NewtonRaphson {
         }
     }
 
-    public static void ntonRson() {
+    public static void secant() {
         int itr = 0;
         boolean running = true;
-        double appErr = 0, xi = assumedR;;
+        double old = -1, appErr = 0;
 
         while (running) {
-            df = new Expression("der(" + FrPanel.funcField.getText() + ", x, " + String.valueOf(xi) + ")");
-            double xii = xi - (f.calculate(xi) / df.calculate());
-            appErr = Math.abs((xii - xi) / xii) * 100;
+
+            double fx1 = f.calculate(x1), fx2 = f.calculate(x2);
+            double xi = x2 - ((fx2 * (x2 - x1)) / (fx2 - fx1));
+            appErr = Math.abs((xi - x2) / xi) * 100;
 
             list.add(new ArrayList<>());
             list.get(itr).add(String.valueOf(itr + 1));
             Formatter formatter = new Formatter();
+            formatter.format("%.5f", x1);
+            list.get(itr).add(formatter.toString());
+            formatter = new Formatter();
             formatter.format("%.5f", xi);
             list.get(itr).add(formatter.toString());
             formatter = new Formatter();
-            formatter.format("%.5f", xii);
-            list.get(itr).add(formatter.toString());
             formatter = new Formatter();
-            formatter = new Formatter();
-            formatter.format("%.5f", f.calculate(xii));
+            formatter.format("%.5f", x2);
             list.get(itr).add(formatter.toString());
             formatter = new Formatter();
             formatter.format("%.5f", Math.abs(appErr));
             list.get(itr).add(formatter.toString());
             formatter = new Formatter();
 
-            running = appErr > tErr;
+            running = Math.abs(appErr) > tErr;
 
-            xi = xii;
+            x1 = x2;
+            x2 = xi;
             itr++;
         }
     }

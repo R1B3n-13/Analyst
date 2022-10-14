@@ -5,6 +5,7 @@ import com.analyst.sle.LUDecomposition;
 import com.analyst.sle.NaiveGaussian;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -60,6 +61,11 @@ public class SlePanel extends javax.swing.JPanel {
         sleComboBox.setForeground(new java.awt.Color(177, 191, 222));
         sleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solve sle (Naive Gaussian elimination)", "Solve sle (Gaussian elimination with partial pivoting)", "Find the L component", "Find the U component" }));
         sleComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sleComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleComboBoxActionPerformed(evt);
+            }
+        });
 
         sleCreateButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         sleCreateButton.setForeground(new java.awt.Color(177, 191, 222));
@@ -117,6 +123,7 @@ public class SlePanel extends javax.swing.JPanel {
         sleRunButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         sleRunButton.setForeground(new java.awt.Color(177, 191, 222));
         sleRunButton.setText("Run");
+        sleRunButton.setEnabled(false);
         sleRunButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         sleRunButton.setPreferredSize(new java.awt.Dimension(93, 31));
         sleRunButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,6 +275,7 @@ public class SlePanel extends javax.swing.JPanel {
     private void sleCreateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleCreateButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
             try {
+                sleRunButton.setEnabled(true);
                 resPanel.setVisible(false);
                 solnTextField.setText("");
                 int row = Integer.parseInt(unknownTextField.getText());
@@ -316,6 +324,11 @@ public class SlePanel extends javax.swing.JPanel {
 
     private void sleRunButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleRunButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
+            JButton bt = (JButton) evt.getSource();
+            if (!bt.isEnabled()) {
+                return;
+            }
+
             if (sleComboBox.getSelectedIndex() == 0) {
                 NaiveGaussian.run();
             } else if (sleComboBox.getSelectedIndex() == 1) {
@@ -344,6 +357,10 @@ public class SlePanel extends javax.swing.JPanel {
             solnTextField.setText("");
         }
     }//GEN-LAST:event_sleClearButtonMouseClicked
+
+    private void sleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleComboBoxActionPerformed
+        sleRunButton.setEnabled(false);
+    }//GEN-LAST:event_sleComboBoxActionPerformed
 
     public static int getNoOfUns() {
         return Integer.parseInt(unknownTextField.getText());
