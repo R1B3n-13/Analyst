@@ -59,7 +59,7 @@ public class SlePanel extends javax.swing.JPanel {
         sleNorthPanel.setBackground(new java.awt.Color(0, 23, 39));
 
         sleComboBox.setForeground(new java.awt.Color(177, 191, 222));
-        sleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solve sle (Naive Gaussian elimination)", "Solve sle (Gaussian elimination with partial pivoting)", "Find the L component", "Find the U component" }));
+        sleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solve sle (Naive Gaussian elimination)", "Solve sle (Gaussian elimination with partial pivoting)", "Find the L component", "Find the U component", "Find inverse matrix " }));
         sleComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sleComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,12 +329,13 @@ public class SlePanel extends javax.swing.JPanel {
                 return;
             }
 
-            if (sleComboBox.getSelectedIndex() == 0) {
-                NaiveGaussian.run();
-            } else if (sleComboBox.getSelectedIndex() == 1) {
-                Gaussian.run();
-            } else {
-                LUDecomposition.run();
+            switch (sleComboBox.getSelectedIndex()) {
+                case 0 ->
+                    NaiveGaussian.run();
+                case 1 ->
+                    Gaussian.run();
+                default ->
+                    LUDecomposition.run();
             }
         }
     }//GEN-LAST:event_sleRunButtonMouseClicked

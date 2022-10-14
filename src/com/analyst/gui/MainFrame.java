@@ -31,8 +31,6 @@ public class MainFrame extends javax.swing.JFrame {
         enterAction = new EnterAction();
         introPanel.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enter");
         introPanel.getActionMap().put("enter", enterAction);
-        indexPanel.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enter");
-        indexPanel.getActionMap().put("enter", enterAction);
     }
 
     private class EnterAction extends AbstractAction {
@@ -359,6 +357,16 @@ public class MainFrame extends javax.swing.JFrame {
                 titleBar.setBackground(new Color(13, 8, 18));
                 titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(13, 8, 18)));
                 backLabel.setVisible(false);
+            }
+            if (getCurrentComponentName(mainPanel).equals("frPanel")) {
+                mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
+                titleBar.setBackground(new Color(13, 8, 18));
+                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(13, 8, 18)));
+            }
+            if (getCurrentComponentName(mainPanel).equals("calcSlePanel")) {
+                mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
+                titleBar.setBackground(new Color(13, 8, 18));
+                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(13, 8, 18)));
             }
         }
     }//GEN-LAST:event_backLabelMouseClicked

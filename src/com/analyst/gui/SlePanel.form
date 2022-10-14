@@ -71,11 +71,12 @@
               <Color blue="de" green="bf" red="b1" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="5">
                 <StringItem index="0" value="Solve sle (Naive Gaussian elimination)"/>
                 <StringItem index="1" value="Solve sle (Gaussian elimination with partial pivoting)"/>
                 <StringItem index="2" value="Find the L component"/>
                 <StringItem index="3" value="Find the U component"/>
+                <StringItem index="4" value="Find inverse matrix "/>
               </StringArray>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

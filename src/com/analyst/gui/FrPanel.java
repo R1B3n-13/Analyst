@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.analyst.gui;
 
 import com.analyst.findroot.Bisection;
@@ -185,25 +181,30 @@ public class FrPanel extends javax.swing.JPanel {
 
     private void runButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
-            if (frComboBox.getSelectedIndex() == 0) {
-                Bisection.run();
-                if (Bisection.flg && Bisection.valid) {
-                    resPanel.setVisible(true);
+            switch (frComboBox.getSelectedIndex()) {
+                case 0 -> {
+                    Bisection.run();
+                    if (Bisection.flg && Bisection.valid) {
+                        resPanel.setVisible(true);
+                    }
                 }
-            } else if (frComboBox.getSelectedIndex() == 1) {
-                FalsePosition.run();
-                if (FalsePosition.flg && FalsePosition.valid) {
-                    resPanel.setVisible(true);
+                case 1 -> {
+                    FalsePosition.run();
+                    if (FalsePosition.flg && FalsePosition.valid) {
+                        resPanel.setVisible(true);
+                    }
                 }
-            } else if (frComboBox.getSelectedIndex() == 2) {
-                NewtonRaphson.run();
-                if (NewtonRaphson.flg) {
-                    resPanel.setVisible(true);
+                case 2 -> {
+                    NewtonRaphson.run();
+                    if (NewtonRaphson.flg) {
+                        resPanel.setVisible(true);
+                    }
                 }
-            } else {
-                Secant.run();
-                if (Secant.flg) {
-                    resPanel.setVisible(true);
+                default -> {
+                    Secant.run();
+                    if (Secant.flg) {
+                        resPanel.setVisible(true);
+                    }
                 }
             }
         }
