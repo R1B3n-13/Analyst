@@ -1,5 +1,6 @@
 package com.analyst.gui;
 
+import com.analyst.sle.Gaussian;
 import com.analyst.sle.NaiveGaussian;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -310,7 +311,7 @@ public class SlePanel extends javax.swing.JPanel {
 
     private void sleRunButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleRunButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
-            NaiveGaussian.run();
+            Gaussian.run();
         }
     }//GEN-LAST:event_sleRunButtonMouseClicked
 

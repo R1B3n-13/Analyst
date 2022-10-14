@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  *
  * @author R1B3n
  */
-public class NaiveGaussian {
+public class Gaussian {
 
     static int n = SlePanel.getNoOfUns() - 1;
     static int i, j, k;
@@ -64,6 +64,26 @@ public class NaiveGaussian {
 
     public static void NaiveGaussElim(int n, double matA[][], double matB[], double matx[]) {
         for (k = 0; k <= n; k++) {
+            int maxR = k;
+            double maxN = matA[k][k];
+            for (int i = k + 1; i <= n; i++) {
+                if (Math.abs(matA[i][k]) > maxN) {
+                    maxN = matA[i][k];
+                    maxR = i;
+                }
+            }
+
+            if (maxR != k) {
+                for (int i = 0; i <= n; i++) {
+                    double temp = matA[k][i];
+                    matA[k][i] = matA[maxR][i];
+                    matA[maxR][i] = temp;
+                }
+                double temp = matB[k];
+                matB[k] = matB[maxR];
+                matB[maxR] = temp;
+            }
+
             for (i = k + 1; i <= n; i++) {
                 mult = matA[i][k] / matA[k][k];
                 matA[i][k] = mult;
