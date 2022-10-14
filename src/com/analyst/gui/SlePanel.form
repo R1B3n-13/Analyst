@@ -72,10 +72,10 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="Solve sle (Naive Gaussian elimination)"/>
+                <StringItem index="1" value="Solve sle (Gaussian elimination with partial pivoting)"/>
+                <StringItem index="2" value="Find the L component"/>
+                <StringItem index="3" value="Find the U component"/>
               </StringArray>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -84,6 +84,7 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="sleCreateButton">
@@ -149,9 +150,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sleClearButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="sleResetButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="solnTextField" pref="308" max="32767" attributes="0"/>
+                  <Component id="solnTextField" pref="419" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="unknownLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -167,7 +166,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="sleRunButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="sleClearButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sleResetButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="unknownTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="unknownLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="solnTextField" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
@@ -209,21 +207,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sleClearButtonMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="sleResetButton">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Monospaced" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="de" green="bf" red="b1" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Reset"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sleResetButtonMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="unknownTextField">

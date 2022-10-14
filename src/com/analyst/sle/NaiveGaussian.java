@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class NaiveGaussian {
 
-    static int n = SlePanel.getNoOfUns() - 1;
+    static int n;
     static int i, j, k;
     static double sum, mult;
     static String soln;
@@ -37,7 +37,7 @@ public class NaiveGaussian {
                 matB[i] = Double.parseDouble((String) SlePanel.getMat().getModel().getValueAt(i, n + 1));
             }
 
-            NaiveGaussElim(n, matA, matB, matx);
+            NaiveGaussElim();
 
             for (int i = 0; i <= n; i++) {
                 for (int j = 0; j <= n; j++) {
@@ -56,8 +56,8 @@ public class NaiveGaussian {
                 formatter.format("%.4f", matx[i]);
                 soln += "x" + String.valueOf(i + 1) + " : " + formatter.toString() + "    ";
             }
-            SlePanel.getsolnField().setFont(new Font("Roboto", Font.BOLD, Math.max(15,
-                    (2 * SlePanel.getsolnField().getSize().width + 300) / soln.length()
+            SlePanel.getsolnField().setFont(new Font("Roboto", Font.BOLD, Math.min(15,
+                    (2 * SlePanel.getsolnField().getSize().width + 700) / soln.length()
             )));
             SlePanel.getsolnField().setText(soln);
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class NaiveGaussian {
         }
     }
 
-    public static void NaiveGaussElim(int n, double matA[][], double matB[], double matx[]) {
+    static void NaiveGaussElim() {
         for (k = 0; k <= n; k++) {
             for (i = k + 1; i <= n; i++) {
                 mult = matA[i][k] / matA[k][k];

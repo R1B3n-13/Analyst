@@ -1,9 +1,6 @@
 package com.analyst.sle;
 
 import com.analyst.gui.SlePanel;
-import static com.analyst.sle.NaiveGaussian.i;
-import static com.analyst.sle.NaiveGaussian.matx;
-import static com.analyst.sle.NaiveGaussian.soln;
 import java.awt.Font;
 import java.util.Formatter;
 import javax.swing.JOptionPane;
@@ -14,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class Gaussian {
 
-    static int n = SlePanel.getNoOfUns() - 1;
+    static int n;
     static int i, j, k;
     static double sum, mult;
     static String soln;
@@ -40,7 +37,7 @@ public class Gaussian {
                 matB[i] = Double.parseDouble((String) SlePanel.getMat().getModel().getValueAt(i, n + 1));
             }
 
-            NaiveGaussElim(n, matA, matB, matx);
+            GaussElim();
 
             for (int i = 0; i <= n; i++) {
                 for (int j = 0; j <= n; j++) {
@@ -60,7 +57,7 @@ public class Gaussian {
                 soln += "x" + String.valueOf(i + 1) + " : " + formatter.toString() + "    ";
             }
             SlePanel.getsolnField().setFont(new Font("Roboto", Font.BOLD, Math.min(15,
-                    (2 * SlePanel.getsolnField().getSize().width + 300) / soln.length()
+                    (2 * SlePanel.getsolnField().getSize().width + 700) / soln.length()
             )));
 
             SlePanel.getsolnField().setText(soln);
@@ -72,7 +69,7 @@ public class Gaussian {
         }
     }
 
-    public static void NaiveGaussElim(int n, double matA[][], double matB[], double matx[]) {
+    static void GaussElim() {
         for (k = 0; k <= n; k++) {
             int maxR = k;
             double maxN = matA[k][k];

@@ -1,6 +1,7 @@
 package com.analyst.gui;
 
 import com.analyst.sle.Gaussian;
+import com.analyst.sle.LUDecomposition;
 import com.analyst.sle.NaiveGaussian;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -41,7 +42,6 @@ public class SlePanel extends javax.swing.JPanel {
         sleSouthPanel = new javax.swing.JPanel();
         sleRunButton = new javax.swing.JButton();
         sleClearButton = new javax.swing.JButton();
-        sleResetButton = new javax.swing.JButton();
         unknownTextField = new javax.swing.JTextField();
         unknownLabel = new javax.swing.JLabel();
         solnTextField = new javax.swing.JTextField();
@@ -58,7 +58,7 @@ public class SlePanel extends javax.swing.JPanel {
         sleNorthPanel.setBackground(new java.awt.Color(0, 23, 39));
 
         sleComboBox.setForeground(new java.awt.Color(177, 191, 222));
-        sleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solve sle (Naive Gaussian elimination)", "Solve sle (Gaussian elimination with partial pivoting)", "Find the L component", "Find the U component" }));
         sleComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         sleCreateButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
@@ -135,16 +135,6 @@ public class SlePanel extends javax.swing.JPanel {
             }
         });
 
-        sleResetButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        sleResetButton.setForeground(new java.awt.Color(177, 191, 222));
-        sleResetButton.setText("Reset");
-        sleResetButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        sleResetButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sleResetButtonMouseClicked(evt);
-            }
-        });
-
         unknownTextField.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         unknownTextField.setForeground(new java.awt.Color(177, 191, 222));
         unknownTextField.setText("3");
@@ -168,9 +158,7 @@ public class SlePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(sleClearButton)
                 .addGap(18, 18, 18)
-                .addComponent(sleResetButton)
-                .addGap(18, 18, 18)
-                .addComponent(solnTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(solnTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(unknownLabel)
                 .addGap(18, 18, 18)
@@ -184,7 +172,6 @@ public class SlePanel extends javax.swing.JPanel {
                 .addGroup(sleSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sleRunButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sleClearButton)
-                    .addComponent(sleResetButton)
                     .addComponent(unknownTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(unknownLabel)
                     .addComponent(solnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -284,11 +271,16 @@ public class SlePanel extends javax.swing.JPanel {
                 solnTextField.setText("");
                 int row = Integer.parseInt(unknownTextField.getText());
                 if (row < 16 && row > 0) {
-                    String[] title = new String[row + 1];
+                    String[] title = new String[row];
+                    if (sleComboBox.getSelectedIndex() == 0 || sleComboBox.getSelectedIndex() == 1) {
+                        title = new String[row + 1];
+                    }
                     for (int i = 0; i < row; i++) {
                         title[i] = "x" + String.valueOf(i + 1);
                     }
-                    title[row] = "const";
+                    if (sleComboBox.getSelectedIndex() == 0 || sleComboBox.getSelectedIndex() == 1) {
+                        title[row] = "const";
+                    }
                     DefaultTableModel modelMat = new DefaultTableModel(title, row);
                     DefaultTableModel modelRes = new DefaultTableModel(title, row);
                     matTable.setModel(modelMat);
@@ -321,17 +313,15 @@ public class SlePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_sleCreateButtonMouseClicked
 
-    private void sleResetButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleResetButtonMouseClicked
-        if (evt.getButton() == MouseEvent.BUTTON1) {
-            matPanel.setVisible(false);
-            resPanel.setVisible(false);
-            solnTextField.setText("");
-        }
-    }//GEN-LAST:event_sleResetButtonMouseClicked
-
     private void sleRunButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleRunButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
-            Gaussian.run();
+            if (sleComboBox.getSelectedIndex() == 0) {
+                NaiveGaussian.run();
+            } else if (sleComboBox.getSelectedIndex() == 1) {
+                Gaussian.run();
+            } else {
+                LUDecomposition.run();
+            }
         }
     }//GEN-LAST:event_sleRunButtonMouseClicked
 
@@ -389,10 +379,9 @@ public class SlePanel extends javax.swing.JPanel {
     private static javax.swing.JTable resTable;
     private javax.swing.JPanel sleCenterPanel;
     private javax.swing.JButton sleClearButton;
-    private javax.swing.JComboBox<String> sleComboBox;
+    public static javax.swing.JComboBox<String> sleComboBox;
     private javax.swing.JButton sleCreateButton;
     private javax.swing.JPanel sleNorthPanel;
-    private javax.swing.JButton sleResetButton;
     private javax.swing.JButton sleRunButton;
     private javax.swing.JPanel sleSouthPanel;
     private static javax.swing.JTextField solnTextField;
