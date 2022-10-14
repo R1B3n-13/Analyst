@@ -2,6 +2,7 @@ package com.analyst.gui;
 
 import com.analyst.sle.Gaussian;
 import com.analyst.sle.NaiveGaussian;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,6 +36,8 @@ public class SlePanel extends javax.swing.JPanel {
         sleNorthPanel = new javax.swing.JPanel();
         sleComboBox = new javax.swing.JComboBox<>();
         sleCreateButton = new javax.swing.JButton();
+        inputLabel = new javax.swing.JLabel();
+        outputLabel = new javax.swing.JLabel();
         sleSouthPanel = new javax.swing.JPanel();
         sleRunButton = new javax.swing.JButton();
         sleClearButton = new javax.swing.JButton();
@@ -69,6 +72,14 @@ public class SlePanel extends javax.swing.JPanel {
             }
         });
 
+        inputLabel.setFont(new java.awt.Font("Courier", 1, 24)); // NOI18N
+        inputLabel.setForeground(new java.awt.Color(161, 131, 199));
+        inputLabel.setText("Input:");
+
+        outputLabel.setFont(new java.awt.Font("Courier", 1, 24)); // NOI18N
+        outputLabel.setForeground(new java.awt.Color(161, 131, 199));
+        outputLabel.setText("Output:");
+
         javax.swing.GroupLayout sleNorthPanelLayout = new javax.swing.GroupLayout(sleNorthPanel);
         sleNorthPanel.setLayout(sleNorthPanelLayout);
         sleNorthPanelLayout.setHorizontalGroup(
@@ -76,7 +87,11 @@ public class SlePanel extends javax.swing.JPanel {
             .addGroup(sleNorthPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(sleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
+                .addComponent(inputLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(outputLabel)
+                .addGap(100, 100, 100)
                 .addComponent(sleCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -87,7 +102,12 @@ public class SlePanel extends javax.swing.JPanel {
                 .addGroup(sleNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sleCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sleNorthPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(sleNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputLabel)
+                    .addComponent(outputLabel)))
         );
 
         add(sleNorthPanel, java.awt.BorderLayout.PAGE_START);
@@ -133,7 +153,7 @@ public class SlePanel extends javax.swing.JPanel {
         unknownLabel.setForeground(new java.awt.Color(177, 191, 222));
         unknownLabel.setText("No. of unknowns:");
 
-        solnTextField.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        solnTextField.setFont(new java.awt.Font("Roboto", 1, 15)); // NOI18N
         solnTextField.setForeground(new java.awt.Color(108, 180, 64));
         solnTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         solnTextField.setBorder(null);
@@ -215,7 +235,7 @@ public class SlePanel extends javax.swing.JPanel {
         );
         matPanelLayout.setVerticalGroup(
             matPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(matScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addComponent(matScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
         );
 
         sleCenterPanel.add(matPanel);
@@ -249,7 +269,7 @@ public class SlePanel extends javax.swing.JPanel {
         );
         resPanelLayout.setVerticalGroup(
             resPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(resScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addComponent(resScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
         );
 
         sleCenterPanel.add(resPanel);
@@ -318,50 +338,52 @@ public class SlePanel extends javax.swing.JPanel {
     private void sleClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleClearButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
             int n = Integer.parseInt(unknownTextField.getText());
-            
+
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     matTable.getModel().setValueAt(null, i, j);
                 }
             }
-            
+
             for (int i = 0; i < n; i++) {
                 matTable.getModel().setValueAt(null, i, n);
             }
-            
+
             resPanel.setVisible(false);
             solnTextField.setText("");
         }
     }//GEN-LAST:event_sleClearButtonMouseClicked
-    
+
     public static int getNoOfUns() {
         return Integer.parseInt(unknownTextField.getText());
     }
-    
+
     public static JTable getMat() {
         return matTable;
     }
-    
+
     public static JTable getRes() {
         return resTable;
     }
-    
+
     public static JPanel getResPanel() {
         return resPanel;
     }
-    
+
     public static JTextField getsolnField() {
         return solnTextField;
     }
-    
+
     public static void setValue(double num, int i, int j) {
         resTable.getModel().setValueAt(num, i, j);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel inputLabel;
     private javax.swing.JPanel matPanel;
     private javax.swing.JScrollPane matScrollPane;
     private static javax.swing.JTable matTable;
+    private javax.swing.JLabel outputLabel;
     private static javax.swing.JPanel resPanel;
     private javax.swing.JScrollPane resScrollPane;
     private static javax.swing.JTable resTable;

@@ -1,6 +1,11 @@
 package com.analyst.sle;
 
 import com.analyst.gui.SlePanel;
+import static com.analyst.sle.NaiveGaussian.i;
+import static com.analyst.sle.NaiveGaussian.matx;
+import static com.analyst.sle.NaiveGaussian.soln;
+import java.awt.Font;
+import java.util.Formatter;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,8 +55,13 @@ public class Gaussian {
             SlePanel.getResPanel().setVisible(true);
 
             for (i = 0; i <= n; i++) {
-                soln += "x" + String.valueOf(i + 1) + " : " + String.valueOf(matx[i]) + "    ";
+                Formatter formatter = new Formatter();
+                formatter.format("%.4f", matx[i]);
+                soln += "x" + String.valueOf(i + 1) + " : " + formatter.toString() + "    ";
             }
+            SlePanel.getsolnField().setFont(new Font("Roboto", Font.BOLD, Math.min(15,
+                    (2 * SlePanel.getsolnField().getSize().width + 300) / soln.length()
+            )));
 
             SlePanel.getsolnField().setText(soln);
         } catch (Exception e) {
