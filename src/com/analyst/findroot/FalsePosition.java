@@ -11,7 +11,7 @@ import org.mariuszgromada.math.mxparser.Function;
  *
  * @author R1B3n
  */
-public class Bisection {
+public class FalsePosition {
 
     static Function f;
     static double lo, hi, tErr;
@@ -29,7 +29,7 @@ public class Bisection {
             list = new ArrayList<ArrayList<String>>();
             valid = true;
 
-            biSection();
+            fPosition();
 
             if (valid) {
                 Object[] title = {"Iteration", "Xₗ", "Xᵤ", "Xₘ", "f(Xₘ)", "|εₐ| %"};
@@ -52,7 +52,7 @@ public class Bisection {
         }
     }
 
-    public static void biSection() {
+    public static void fPosition() {
         int itr = 0;
         boolean running = true;
         double old = -1, appErr = 0;
@@ -65,7 +65,8 @@ public class Bisection {
             valid = false;
         } else {
             while (running) {
-                double mid = (lo + hi) / 2;
+                double mid = ((hi * f.calculate(lo)
+                        - (lo * f.calculate(hi)))) / (f.calculate(lo) - f.calculate(hi));
                 appErr = ((mid - old) / mid) * 100;
 
                 list.add(new ArrayList<>());

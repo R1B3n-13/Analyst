@@ -5,6 +5,8 @@
 package com.analyst.gui;
 
 import com.analyst.findroot.Bisection;
+import com.analyst.findroot.FalsePosition;
+import com.analyst.findroot.NewtonRaphson;
 import java.awt.event.MouseEvent;
 
 /**
@@ -97,7 +99,7 @@ public class FrPanel extends javax.swing.JPanel {
             }
         });
 
-        frComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        frComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bisection", "False Position", "Newton Raphson", "Secant" }));
         frComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 frComboBoxActionPerformed(evt);
@@ -182,9 +184,21 @@ public class FrPanel extends javax.swing.JPanel {
 
     private void runButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runButtonMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
-            Bisection.run();
-            if (Bisection.flg && Bisection.valid) {
-                resPanel.setVisible(true);
+            if (frComboBox.getSelectedIndex() == 0) {
+                Bisection.run();
+                if (Bisection.flg && Bisection.valid) {
+                    resPanel.setVisible(true);
+                }
+            } else if (frComboBox.getSelectedIndex() == 1) {
+                FalsePosition.run();
+                if (FalsePosition.flg && FalsePosition.valid) {
+                    resPanel.setVisible(true);
+                }
+            } else if (frComboBox.getSelectedIndex() == 2) {
+                NewtonRaphson.run();
+                if (NewtonRaphson.flg) {
+                    resPanel.setVisible(true);
+                }
             }
         }
     }//GEN-LAST:event_runButtonMouseClicked
