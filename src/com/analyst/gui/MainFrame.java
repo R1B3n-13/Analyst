@@ -85,6 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
         frButton = new javax.swing.JButton();
         sleButton = new javax.swing.JButton();
         calcSlePanel = new com.analyst.gui.SlePanel();
+        frPanel = new com.analyst.gui.FrPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -243,6 +244,11 @@ public class MainFrame extends javax.swing.JFrame {
         frButton.setBorderPainted(false);
         frButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         frButton.setBackground(new java.awt.Color(101, 89, 94, 50));
+        frButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frButtonMouseClicked(evt);
+            }
+        });
 
         sleButton.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         sleButton.setForeground(new java.awt.Color(172, 179, 186));
@@ -292,6 +298,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         calcSlePanel.setName("calcSlePanel"); // NOI18N
         mainPanel.add(calcSlePanel, "card4");
+
+        frPanel.setName("frPanel"); // NOI18N
+        mainPanel.add(frPanel, "card5");
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -371,10 +380,20 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowDeiconified
 
     private void sleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sleButtonMouseClicked
-        mainPanel.nextSlidingPanel(10, calcSlePanel, JSlidingPane.Direction.Left);
-        titleBar.setBackground(new Color(0, 14, 26));
-        titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            mainPanel.nextSlidingPanel(10, calcSlePanel, JSlidingPane.Direction.Left);
+            titleBar.setBackground(new Color(0, 14, 26));
+            titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        }
     }//GEN-LAST:event_sleButtonMouseClicked
+
+    private void frButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            mainPanel.nextSlidingPanel(10, frPanel, JSlidingPane.Direction.Left);
+            titleBar.setBackground(new Color(0, 14, 26));
+            titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        }
+    }//GEN-LAST:event_frButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -412,6 +431,7 @@ public class MainFrame extends javax.swing.JFrame {
     private com.analyst.gui.SlePanel calcSlePanel;
     private javax.swing.JLabel closeLabel;
     private javax.swing.JButton frButton;
+    private com.analyst.gui.FrPanel frPanel;
     private javax.swing.JLabel indexLabel;
     private keeptoo.KGradientPanel indexPanel;
     private javax.swing.JLabel introDescLabel;

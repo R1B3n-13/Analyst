@@ -141,7 +141,7 @@ public class SlePanel extends javax.swing.JPanel {
 
         unknownLabel.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         unknownLabel.setForeground(new java.awt.Color(177, 191, 222));
-        unknownLabel.setText("No. of unknowns:");
+        unknownLabel.setText("Rows/Unknowns:");
 
         solnTextField.setFont(new java.awt.Font("Roboto", 1, 15)); // NOI18N
         solnTextField.setForeground(new java.awt.Color(108, 180, 64));
@@ -158,7 +158,7 @@ public class SlePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(sleClearButton)
                 .addGap(18, 18, 18)
-                .addComponent(solnTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                .addComponent(solnTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(unknownLabel)
                 .addGap(18, 18, 18)
