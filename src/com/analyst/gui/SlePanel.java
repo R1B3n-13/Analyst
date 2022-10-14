@@ -181,7 +181,7 @@ public class SlePanel extends javax.swing.JPanel {
         add(sleSouthPanel, java.awt.BorderLayout.PAGE_END);
 
         sleCenterPanel.setBackground(new java.awt.Color(0, 23, 39));
-        sleCenterPanel.setLayout(new java.awt.GridLayout());
+        sleCenterPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         matPanel.setBackground(new java.awt.Color(0, 23, 39));
         matPanel.setVisible(false);
@@ -246,6 +246,7 @@ public class SlePanel extends javax.swing.JPanel {
         resTable.setGridColor(new java.awt.Color(177, 191, 222));
         resTable.setRowSelectionAllowed(false);
         resTable.setShowGrid(true);
+        resTable.getTableHeader().setReorderingAllowed(false);
         resScrollPane.setViewportView(resTable);
 
         javax.swing.GroupLayout resPanelLayout = new javax.swing.GroupLayout(resPanel);

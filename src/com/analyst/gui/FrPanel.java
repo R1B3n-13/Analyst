@@ -4,6 +4,9 @@
  */
 package com.analyst.gui;
 
+import com.analyst.findroot.Bisection;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author R1B3n
@@ -35,10 +38,14 @@ public class FrPanel extends javax.swing.JPanel {
         highField = new javax.swing.JTextField();
         errorLabel = new javax.swing.JLabel();
         errorField = new javax.swing.JTextField();
-        frCenterPanel = new javax.swing.JPanel();
+        frSouthPanel = new javax.swing.JPanel();
         runButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
-        frSouthPanel = new javax.swing.JPanel();
+        frComboBox = new javax.swing.JComboBox<>();
+        frCenterPanel = new javax.swing.JPanel();
+        resPanel = new javax.swing.JPanel();
+        resScrollPane = new javax.swing.JScrollPane();
+        resTable = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -75,62 +82,141 @@ public class FrPanel extends javax.swing.JPanel {
         runButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         runButton.setForeground(new java.awt.Color(177, 191, 222));
         runButton.setText("Run");
+        runButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                runButtonMouseClicked(evt);
+            }
+        });
 
         clearButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         clearButton.setForeground(new java.awt.Color(177, 191, 222));
         clearButton.setText("clear");
+        clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearButtonMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout frCenterPanelLayout = new javax.swing.GroupLayout(frCenterPanel);
-        frCenterPanel.setLayout(frCenterPanelLayout);
-        frCenterPanelLayout.setHorizontalGroup(
-            frCenterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frCenterPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(runButton)
-                .addGap(18, 18, 18)
-                .addComponent(clearButton)
-                .addContainerGap(2495, Short.MAX_VALUE))
-        );
-        frCenterPanelLayout.setVerticalGroup(
-            frCenterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frCenterPanelLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(frCenterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(runButton)
-                    .addComponent(clearButton))
-                .addGap(20, 20, 20))
-        );
-
-        add(frCenterPanel, java.awt.BorderLayout.PAGE_END);
+        frComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        frComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout frSouthPanelLayout = new javax.swing.GroupLayout(frSouthPanel);
         frSouthPanel.setLayout(frSouthPanelLayout);
         frSouthPanelLayout.setHorizontalGroup(
             frSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2716, Short.MAX_VALUE)
+            .addGroup(frSouthPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(runButton)
+                .addGap(18, 18, 18)
+                .addComponent(clearButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2084, Short.MAX_VALUE)
+                .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         frSouthPanelLayout.setVerticalGroup(
             frSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frSouthPanelLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(frSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(runButton)
+                    .addComponent(clearButton)
+                    .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
-        add(frSouthPanel, java.awt.BorderLayout.CENTER);
+        add(frSouthPanel, java.awt.BorderLayout.PAGE_END);
+
+        frCenterPanel.setLayout(new java.awt.BorderLayout());
+
+        resPanel.setVisible(false);
+        resPanel.setLayout(new javax.swing.BoxLayout(resPanel, javax.swing.BoxLayout.LINE_AXIS));
+
+        resTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        resTable.setFillsViewportHeight(true);
+        resTable.setGridColor(new java.awt.Color(177, 191, 222));
+        resTable.setRowSelectionAllowed(false);
+        resTable.setShowGrid(true);
+        resTable.setShowHorizontalLines(true);
+        resTable.setShowVerticalLines(true);
+        resTable.getTableHeader().setReorderingAllowed(false);
+        resScrollPane.setViewportView(resTable);
+
+        resPanel.add(resScrollPane);
+
+        frCenterPanel.add(resPanel, java.awt.BorderLayout.CENTER);
+
+        add(frCenterPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void frComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frComboBoxActionPerformed
+        if (frComboBox.getSelectedIndex() == 0 || frComboBox.getSelectedIndex() == 1) {
+            highLabel.setVisible(true);
+            highField.setVisible(true);
+            lowLabel.setText("Low:");
+            highLabel.setText("High:");
+        } else if (frComboBox.getSelectedIndex() == 2) {
+            highLabel.setVisible(false);
+            highField.setVisible(false);
+            lowLabel.setText("Assumed Root:");
+        } else {
+            highLabel.setVisible(true);
+            highField.setVisible(true);
+            lowLabel.setText("First Guess:");
+            highLabel.setText("Second Guess:");
+        }
+    }//GEN-LAST:event_frComboBoxActionPerformed
+
+    private void runButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            Bisection.run();
+            if (Bisection.flg && Bisection.valid) {
+                resPanel.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_runButtonMouseClicked
+
+    private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            funcField.setText("");
+            lowField.setText("");
+            highField.setText("");
+            errorField.setText("");
+            resPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_clearButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearButton;
-    private static javax.swing.JTextField errorField;
+    public static javax.swing.JTextField errorField;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JPanel frCenterPanel;
+    private javax.swing.JComboBox<String> frComboBox;
     private javax.swing.JPanel frNorthPanel;
     private javax.swing.JPanel frSouthPanel;
-    private static javax.swing.JTextField funcField;
+    public static javax.swing.JTextField funcField;
     private javax.swing.JLabel functionLabel;
-    private static javax.swing.JTextField highField;
+    public static javax.swing.JTextField highField;
     private javax.swing.JLabel highLabel;
-    private static javax.swing.JTextField lowField;
+    public static javax.swing.JTextField lowField;
     private javax.swing.JLabel lowLabel;
+    private javax.swing.JPanel resPanel;
+    private javax.swing.JScrollPane resScrollPane;
+    public static javax.swing.JTable resTable;
     private javax.swing.JButton runButton;
     // End of variables declaration//GEN-END:variables
 }
