@@ -360,13 +360,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
             if (getCurrentComponentName(mainPanel).equals("frPanel")) {
                 mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
-                titleBar.setBackground(new Color(13, 8, 18));
-                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(13, 8, 18)));
+                titleBar.setBackground(new Color(18, 8, 13));
+                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
             }
             if (getCurrentComponentName(mainPanel).equals("calcSlePanel")) {
                 mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
-                titleBar.setBackground(new Color(13, 8, 18));
-                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(13, 8, 18)));
+                titleBar.setBackground(new Color(18, 8, 13));
+                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
             }
         }
     }//GEN-LAST:event_backLabelMouseClicked
