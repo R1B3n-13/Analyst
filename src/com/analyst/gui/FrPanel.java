@@ -5,6 +5,7 @@ import com.analyst.findroot.FalsePosition;
 import com.analyst.findroot.NewtonRaphson;
 import com.analyst.findroot.Secant;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextField;
 
 /**
  *
@@ -41,6 +42,7 @@ public class FrPanel extends javax.swing.JPanel {
         runButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         frComboBox = new javax.swing.JComboBox<>();
+        solnField = new javax.swing.JTextField();
         frCenterPanel = new javax.swing.JPanel();
         resPanel = new javax.swing.JPanel();
         resScrollPane = new javax.swing.JScrollPane();
@@ -103,6 +105,11 @@ public class FrPanel extends javax.swing.JPanel {
             }
         });
 
+        solnField.setForeground(new java.awt.Color(108, 180, 64));
+        solnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        solnField.setBorder(null);
+        solnField.setEditable(false);
+
         javax.swing.GroupLayout frSouthPanelLayout = new javax.swing.GroupLayout(frSouthPanel);
         frSouthPanel.setLayout(frSouthPanelLayout);
         frSouthPanelLayout.setHorizontalGroup(
@@ -112,7 +119,9 @@ public class FrPanel extends javax.swing.JPanel {
                 .addComponent(runButton)
                 .addGap(18, 18, 18)
                 .addComponent(clearButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2084, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(solnField, javax.swing.GroupLayout.DEFAULT_SIZE, 2048, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -123,7 +132,8 @@ public class FrPanel extends javax.swing.JPanel {
                 .addGroup(frSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(runButton)
                     .addComponent(clearButton)
-                    .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(solnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -149,8 +159,6 @@ public class FrPanel extends javax.swing.JPanel {
         resTable.setGridColor(new java.awt.Color(177, 191, 222));
         resTable.setRowSelectionAllowed(false);
         resTable.setShowGrid(true);
-        resTable.setShowHorizontalLines(true);
-        resTable.setShowVerticalLines(true);
         resTable.getTableHeader().setReorderingAllowed(false);
         resScrollPane.setViewportView(resTable);
 
@@ -220,6 +228,9 @@ public class FrPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_clearButtonMouseClicked
 
+    public static JTextField getsolnField() {
+        return solnField;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearButton;
@@ -239,5 +250,6 @@ public class FrPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane resScrollPane;
     public static javax.swing.JTable resTable;
     private javax.swing.JButton runButton;
+    private static javax.swing.JTextField solnField;
     // End of variables declaration//GEN-END:variables
 }

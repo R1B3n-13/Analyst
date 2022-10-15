@@ -1,6 +1,7 @@
 package com.analyst.findroot;
 
 import com.analyst.gui.FrPanel;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Formatter;
 import javax.swing.JOptionPane;
@@ -14,9 +15,10 @@ import org.mariuszgromada.math.mxparser.Function;
 public class Secant {
 
     static Function f;
-    static double x1, x2, tErr;
+    static double x1, x2, tErr, root;
     static ArrayList<ArrayList<String>> list;
     static Object[][] data;
+    static String soln;
     public static boolean flg;
 
     public static void run() {
@@ -40,6 +42,15 @@ public class Secant {
             }
             DefaultTableModel model = new DefaultTableModel(data, title);
             FrPanel.resTable.setModel(model);
+
+            Formatter formatter = new Formatter();
+            formatter.format("%.5f", root);
+            soln = "The approximate root is : " + formatter.toString();
+
+            FrPanel.getsolnField().setFont(new Font("Roboto", Font.BOLD, Math.min(20,
+                    (2 * FrPanel.getsolnField().getSize().width + 700) / soln.length()
+            )));
+            FrPanel.getsolnField().setText(soln);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Invalid input",
@@ -66,11 +77,11 @@ public class Secant {
             formatter.format("%.5f", x1);
             list.get(itr).add(formatter.toString());
             formatter = new Formatter();
-            formatter.format("%.5f", xi);
+            formatter.format("%.5f", x2);
             list.get(itr).add(formatter.toString());
             formatter = new Formatter();
             formatter = new Formatter();
-            formatter.format("%.5f", x2);
+            formatter.format("%.5f", xi);
             list.get(itr).add(formatter.toString());
             formatter = new Formatter();
             formatter.format("%.5f", Math.abs(appErr));
@@ -80,7 +91,7 @@ public class Secant {
             running = Math.abs(appErr) > tErr;
 
             x1 = x2;
-            x2 = xi;
+            root = x2 = xi;
             itr++;
         }
     }

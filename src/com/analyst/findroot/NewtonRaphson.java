@@ -1,6 +1,7 @@
 package com.analyst.findroot;
 
 import com.analyst.gui.FrPanel;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Formatter;
 import javax.swing.JOptionPane;
@@ -16,9 +17,10 @@ public class NewtonRaphson {
 
     static Function f;
     static Expression df;
-    static double assumedR, tErr;
+    static double assumedR, tErr, root;
     static ArrayList<ArrayList<String>> list;
     static Object[][] data;
+    static String soln;
     public static boolean flg;
 
     public static void run() {
@@ -41,6 +43,15 @@ public class NewtonRaphson {
             }
             DefaultTableModel model = new DefaultTableModel(data, title);
             FrPanel.resTable.setModel(model);
+
+            Formatter formatter = new Formatter();
+            formatter.format("%.5f", root);
+            soln = "The approximate root is : " + formatter.toString();
+
+            FrPanel.getsolnField().setFont(new Font("Roboto", Font.BOLD, Math.min(20,
+                    (2 * FrPanel.getsolnField().getSize().width + 700) / soln.length()
+            )));
+            FrPanel.getsolnField().setText(soln);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Invalid input",
@@ -79,7 +90,7 @@ public class NewtonRaphson {
 
             running = appErr > tErr;
 
-            xi = xii;
+            root = xi = xii;
             itr++;
         }
     }

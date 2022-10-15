@@ -154,6 +154,7 @@ public class SlePanel extends javax.swing.JPanel {
         solnTextField.setForeground(new java.awt.Color(108, 180, 64));
         solnTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         solnTextField.setBorder(null);
+        solnTextField.setEditable(false);
 
         javax.swing.GroupLayout sleSouthPanelLayout = new javax.swing.GroupLayout(sleSouthPanel);
         sleSouthPanel.setLayout(sleSouthPanelLayout);
