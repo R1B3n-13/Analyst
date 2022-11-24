@@ -227,10 +227,11 @@ public class FrPanel extends javax.swing.JPanel {
             lowField.setText("");
             highField.setText("");
             errorField.setText("");
+            rootSolnField.setText("");
             resPanel.setVisible(false);
         }
     }//GEN-LAST:event_clearButtonMouseClicked
-
+    
     public static JTextField getsolnField() {
         return rootSolnField;
     }

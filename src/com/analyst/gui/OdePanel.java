@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.analyst.gui;
 
 import com.analyst.ode.Eulers;
@@ -113,6 +109,11 @@ public class OdePanel extends javax.swing.JPanel {
         clearButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         clearButton.setForeground(new java.awt.Color(177, 191, 222));
         clearButton.setText("Clear");
+        clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearButtonMouseClicked(evt);
+            }
+        });
 
         odeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Euler's method", "Heun’s method", "Midpoint method", "Ralston’s method" }));
 
@@ -209,6 +210,18 @@ public class OdePanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_runButtonMouseClicked
+
+    private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            eqnField.setText("");
+            x0Field.setText("");
+            y0Field.setText("");
+            xnField.setText("");
+            stepField.setText("");
+            odeSolnField.setText("");
+            resPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_clearButtonMouseClicked
 
     public static JTextField getsolnField() {
         return odeSolnField;

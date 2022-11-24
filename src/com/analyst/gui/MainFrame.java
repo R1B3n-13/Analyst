@@ -388,6 +388,11 @@ public class MainFrame extends javax.swing.JFrame {
                 titleBar.setBackground(new Color(18, 8, 13));
                 titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
             }
+            if (getCurrentComponentName(mainPanel).equals("odePanel")) {
+                mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
+                titleBar.setBackground(new Color(18, 8, 13));
+                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
+            }
         }
     }//GEN-LAST:event_backLabelMouseClicked
 
