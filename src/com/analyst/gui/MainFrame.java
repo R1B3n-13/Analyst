@@ -82,9 +82,11 @@ public class MainFrame extends javax.swing.JFrame {
         frButton = new javax.swing.JButton();
         sleButton = new javax.swing.JButton();
         odeButton = new javax.swing.JButton();
+        iButton = new javax.swing.JButton();
         calcSlePanel = new com.analyst.gui.SlePanel();
         frPanel = new com.analyst.gui.FrPanel();
         odePanel = new com.analyst.gui.OdePanel();
+        integrationPanel = new com.analyst.gui.IntegrationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -274,34 +276,52 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        iButton.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        iButton.setForeground(new java.awt.Color(172, 179, 186));
+        iButton.setText("Integration");
+        iButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
+        iButton.setBorderPainted(false);
+        iButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iButton.setBackground(new java.awt.Color(101, 89, 94, 50));
+        iButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout indexPanelLayout = new javax.swing.GroupLayout(indexPanel);
         indexPanel.setLayout(indexPanelLayout);
         indexPanelLayout.setHorizontalGroup(
             indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(indexLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(indexPanelLayout.createSequentialGroup()
-                .addGap(317, 317, 317)
                 .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(frButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(odeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(375, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(indexLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(indexPanelLayout.createSequentialGroup()
+                        .addGap(317, 317, 317)
+                        .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(frButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(odeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(iButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 369, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         indexPanelLayout.setVerticalGroup(
             indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(indexPanelLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(indexLabel)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(frButton)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(sleButton)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(odeButton)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(iButton)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         mainPanel.add(indexPanel, "indexPanel");
@@ -315,6 +335,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         odePanel.setName("odePanel"); // NOI18N
         mainPanel.add(odePanel, "card6");
+
+        integrationPanel.setName("integrationPanel"); // NOI18N
+        mainPanel.add(integrationPanel, "card7");
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -377,18 +400,7 @@ public class MainFrame extends javax.swing.JFrame {
                 titleBar.setBackground(new Color(13, 8, 18));
                 titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(13, 8, 18)));
                 backLabel.setVisible(false);
-            }
-            if (getCurrentComponentName(mainPanel).equals("frPanel")) {
-                mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
-                titleBar.setBackground(new Color(18, 8, 13));
-                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
-            }
-            if (getCurrentComponentName(mainPanel).equals("calcSlePanel")) {
-                mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
-                titleBar.setBackground(new Color(18, 8, 13));
-                titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
-            }
-            if (getCurrentComponentName(mainPanel).equals("odePanel")) {
+            } else {
                 mainPanel.nextSlidingPanel(10, indexPanel, JSlidingPane.Direction.Right);
                 titleBar.setBackground(new Color(18, 8, 13));
                 titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(18, 8, 13)));
@@ -432,6 +444,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_odeButtonMouseClicked
 
+    private void iButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            mainPanel.nextSlidingPanel(10, integrationPanel, JSlidingPane.Direction.Left);
+            titleBar.setBackground(new Color(0, 14, 26));
+            titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        }
+    }//GEN-LAST:event_iButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -469,8 +489,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel closeLabel;
     private javax.swing.JButton frButton;
     private com.analyst.gui.FrPanel frPanel;
+    private javax.swing.JButton iButton;
     private javax.swing.JLabel indexLabel;
     private keeptoo.KGradientPanel indexPanel;
+    private com.analyst.gui.IntegrationPanel integrationPanel;
     private javax.swing.JLabel introDescLabel;
     private javax.swing.JLabel introGifLabel;
     private javax.swing.JLabel introLogoLabel;

@@ -40,15 +40,15 @@ public class OdePanel extends javax.swing.JPanel {
         xnField = new javax.swing.JTextField();
         stepLabel = new javax.swing.JLabel();
         stepField = new javax.swing.JTextField();
+        odeCenterPanel = new javax.swing.JPanel();
+        resPanel = new javax.swing.JPanel();
+        resScrollPane = new javax.swing.JScrollPane();
+        resTable = new javax.swing.JTable();
         odeSouthPanel = new javax.swing.JPanel();
         runButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         odeComboBox = new javax.swing.JComboBox<>();
         odeSolnField = new javax.swing.JTextField();
-        odeCenterPanel = new javax.swing.JPanel();
-        resPanel = new javax.swing.JPanel();
-        resScrollPane = new javax.swing.JScrollPane();
-        resTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(0, 23, 39));
         setLayout(new java.awt.BorderLayout());
@@ -91,66 +91,6 @@ public class OdePanel extends javax.swing.JPanel {
 
         add(odeNorthPanel, java.awt.BorderLayout.PAGE_START);
 
-        odeSouthPanel.setMinimumSize(new java.awt.Dimension(100, 31));
-        odeSouthPanel.setPreferredSize(new java.awt.Dimension(947, 71));
-
-        runButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        runButton.setForeground(new java.awt.Color(177, 191, 222));
-        runButton.setText("Run");
-        runButton.setMaximumSize(new java.awt.Dimension(93, 31));
-        runButton.setMinimumSize(new java.awt.Dimension(93, 31));
-        runButton.setPreferredSize(new java.awt.Dimension(93, 31));
-        runButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                runButtonMouseClicked(evt);
-            }
-        });
-
-        clearButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        clearButton.setForeground(new java.awt.Color(177, 191, 222));
-        clearButton.setText("Clear");
-        clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clearButtonMouseClicked(evt);
-            }
-        });
-
-        odeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Euler's method", "Heun’s method", "Midpoint method", "Ralston’s method" }));
-
-        odeSolnField.setForeground(new java.awt.Color(108, 180, 64));
-        odeSolnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        odeSolnField.setBorder(null);
-        odeSolnField.setEditable(false);
-
-        javax.swing.GroupLayout odeSouthPanelLayout = new javax.swing.GroupLayout(odeSouthPanel);
-        odeSouthPanel.setLayout(odeSouthPanelLayout);
-        odeSouthPanelLayout.setHorizontalGroup(
-            odeSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(odeSouthPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(clearButton)
-                .addGap(18, 18, 18)
-                .addComponent(odeSolnField, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(odeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        odeSouthPanelLayout.setVerticalGroup(
-            odeSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(odeSouthPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(odeSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearButton)
-                    .addComponent(odeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(odeSolnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        add(odeSouthPanel, java.awt.BorderLayout.PAGE_END);
-
         odeCenterPanel.setLayout(new java.awt.BorderLayout());
 
         resPanel.setVisible(false);
@@ -178,6 +118,66 @@ public class OdePanel extends javax.swing.JPanel {
         odeCenterPanel.add(resPanel, java.awt.BorderLayout.CENTER);
 
         add(odeCenterPanel, java.awt.BorderLayout.CENTER);
+
+        odeSouthPanel.setMinimumSize(new java.awt.Dimension(100, 31));
+        odeSouthPanel.setPreferredSize(new java.awt.Dimension(947, 71));
+
+        runButton.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        runButton.setForeground(new java.awt.Color(177, 191, 222));
+        runButton.setText("Run");
+        runButton.setMaximumSize(new java.awt.Dimension(93, 31));
+        runButton.setMinimumSize(new java.awt.Dimension(93, 31));
+        runButton.setPreferredSize(new java.awt.Dimension(93, 31));
+        runButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                runButtonMouseClicked(evt);
+            }
+        });
+
+        clearButton.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        clearButton.setForeground(new java.awt.Color(177, 191, 222));
+        clearButton.setText("Clear");
+        clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearButtonMouseClicked(evt);
+            }
+        });
+
+        odeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Euler's method", "Heun’s method", "Midpoint method", "Ralston’s method" }));
+
+        odeSolnField.setForeground(new java.awt.Color(108, 180, 64));
+        odeSolnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        odeSolnField.setBorder(null);
+        odeSolnField.setEditable(false);
+
+        javax.swing.GroupLayout odeSouthPanelLayout = new javax.swing.GroupLayout(odeSouthPanel);
+        odeSouthPanel.setLayout(odeSouthPanelLayout);
+        odeSouthPanelLayout.setHorizontalGroup(
+            odeSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(odeSouthPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(clearButton)
+                .addGap(18, 18, 18)
+                .addComponent(odeSolnField, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(odeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        odeSouthPanelLayout.setVerticalGroup(
+            odeSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(odeSouthPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(odeSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearButton)
+                    .addComponent(odeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(odeSolnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        add(odeSouthPanel, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
     private void runButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_runButtonMouseClicked
