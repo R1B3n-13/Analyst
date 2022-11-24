@@ -37,7 +37,7 @@ public class Gaussian {
                 matB[i] = Double.parseDouble((String) SlePanel.getMat().getModel().getValueAt(i, n + 1));
             }
 
-            GaussElim();
+            gaussElim();
 
             for (int i = 0; i <= n; i++) {
                 for (int j = 0; j <= n; j++) {
@@ -69,7 +69,7 @@ public class Gaussian {
         }
     }
 
-    static void GaussElim() {
+    static void gaussElim() {
         for (k = 0; k <= n; k++) {
             int maxR = k;
             double maxN = matA[k][k];
@@ -110,5 +110,14 @@ public class Gaussian {
             }
             matx[i] = sum / matA[i][i];
         }
+    }
+
+    public static double[] getSolnMat(int N, double mata[][], double matb[]) {
+        n = N;
+        matA = mata;
+        matB = matb;
+        matx = new double[n + 1];
+        gaussElim();
+        return matx;
     }
 }

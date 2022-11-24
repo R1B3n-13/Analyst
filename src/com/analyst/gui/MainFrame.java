@@ -83,10 +83,12 @@ public class MainFrame extends javax.swing.JFrame {
         sleButton = new javax.swing.JButton();
         odeButton = new javax.swing.JButton();
         iButton = new javax.swing.JButton();
+        inpButton = new javax.swing.JButton();
         calcSlePanel = new com.analyst.gui.SlePanel();
         frPanel = new com.analyst.gui.FrPanel();
         odePanel = new com.analyst.gui.OdePanel();
         integrationPanel = new com.analyst.gui.IntegrationPanel();
+        interpolationPanel = new com.analyst.gui.InterpolationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -159,7 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 786, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 918, Short.MAX_VALUE)
                 .addComponent(minimizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(closeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,7 +207,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(introTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(introGifLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                    .addComponent(introGifLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                     .addComponent(introLogoLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(introDescLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -289,6 +291,19 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        inpButton.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        inpButton.setForeground(new java.awt.Color(172, 179, 186));
+        inpButton.setText("Interpolation");
+        inpButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
+        inpButton.setBorderPainted(false);
+        inpButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        inpButton.setBackground(new java.awt.Color(101, 89, 94, 50));
+        inpButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inpButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout indexPanelLayout = new javax.swing.GroupLayout(indexPanel);
         indexPanel.setLayout(indexPanelLayout);
         indexPanelLayout.setHorizontalGroup(
@@ -304,8 +319,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(frButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(odeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(iButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 369, Short.MAX_VALUE)))
+                            .addComponent(iButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 501, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         indexPanelLayout.setVerticalGroup(
@@ -315,13 +331,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(indexLabel)
                 .addGap(18, 18, 18)
                 .addComponent(frButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sleButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(odeButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(iButton)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(inpButton)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         mainPanel.add(indexPanel, "indexPanel");
@@ -338,6 +356,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         integrationPanel.setName("integrationPanel"); // NOI18N
         mainPanel.add(integrationPanel, "card7");
+
+        interpolationPanel.setName("interpolationPanel"); // NOI18N
+        mainPanel.add(interpolationPanel, "card8");
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -452,6 +473,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_iButtonMouseClicked
 
+    private void inpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inpButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            mainPanel.nextSlidingPanel(10, interpolationPanel, JSlidingPane.Direction.Left);
+            titleBar.setBackground(new Color(0, 14, 26));
+            titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        }
+    }//GEN-LAST:event_inpButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -492,7 +521,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton iButton;
     private javax.swing.JLabel indexLabel;
     private keeptoo.KGradientPanel indexPanel;
+    private javax.swing.JButton inpButton;
     private com.analyst.gui.IntegrationPanel integrationPanel;
+    private com.analyst.gui.InterpolationPanel interpolationPanel;
     private javax.swing.JLabel introDescLabel;
     private javax.swing.JLabel introGifLabel;
     private javax.swing.JLabel introLogoLabel;
