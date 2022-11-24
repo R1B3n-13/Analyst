@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 
@@ -82,8 +81,10 @@ public class MainFrame extends javax.swing.JFrame {
         indexLabel = new javax.swing.JLabel();
         frButton = new javax.swing.JButton();
         sleButton = new javax.swing.JButton();
+        odeButton = new javax.swing.JButton();
         calcSlePanel = new com.analyst.gui.SlePanel();
         frPanel = new com.analyst.gui.FrPanel();
+        odePanel = new com.analyst.gui.OdePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -260,6 +261,19 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        odeButton.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        odeButton.setForeground(new java.awt.Color(172, 179, 186));
+        odeButton.setText("Solve ODE");
+        odeButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
+        odeButton.setBorderPainted(false);
+        odeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        odeButton.setBackground(new java.awt.Color(101, 89, 94, 50));
+        odeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                odeButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout indexPanelLayout = new javax.swing.GroupLayout(indexPanel);
         indexPanel.setLayout(indexPanelLayout);
         indexPanelLayout.setHorizontalGroup(
@@ -272,7 +286,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(317, 317, 317)
                 .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(frButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(odeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(375, Short.MAX_VALUE))
         );
         indexPanelLayout.setVerticalGroup(
@@ -280,11 +295,13 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(indexPanelLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(indexLabel)
-                .addGap(72, 72, 72)
+                .addGap(30, 30, 30)
                 .addComponent(frButton)
                 .addGap(35, 35, 35)
                 .addComponent(sleButton)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(odeButton)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         mainPanel.add(indexPanel, "indexPanel");
@@ -295,6 +312,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         frPanel.setName("frPanel"); // NOI18N
         mainPanel.add(frPanel, "card5");
+
+        odePanel.setName("odePanel"); // NOI18N
+        mainPanel.add(odePanel, "card6");
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -399,6 +419,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_frButtonMouseClicked
 
+    private void odeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_odeButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            mainPanel.nextSlidingPanel(10, odePanel, JSlidingPane.Direction.Left);
+            titleBar.setBackground(new Color(0, 14, 26));
+            titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        }
+    }//GEN-LAST:event_odeButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -445,6 +473,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel introTextLabel;
     private static com.analyst.gui.JSlidingPane mainPanel;
     private javax.swing.JLabel minimizeLabel;
+    private javax.swing.JButton odeButton;
+    private com.analyst.gui.OdePanel odePanel;
     private javax.swing.JButton sleButton;
     private javax.swing.JPanel titleBar;
     // End of variables declaration//GEN-END:variables

@@ -147,6 +147,8 @@ public class JSlidingPane extends javax.swing.JPanel {
                     MainFrame.getMainFrame().setExtendedState(MAXIMIZED_BOTH);
                 } else if (getCurrentComponentName(MainFrame.getMainPanel()).equals("frPanel")) {
                     MainFrame.getMainFrame().setExtendedState(MAXIMIZED_BOTH);
+                } else if (getCurrentComponentName(MainFrame.getMainPanel()).equals("odePanel")) {
+                    MainFrame.getMainFrame().setExtendedState(MAXIMIZED_BOTH);
                 } else {
                     MainFrame.getMainFrame().setExtendedState(NORMAL);
                 }

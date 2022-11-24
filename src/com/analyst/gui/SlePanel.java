@@ -3,7 +3,6 @@ package com.analyst.gui;
 import com.analyst.sle.Gaussian;
 import com.analyst.sle.LUDecomposition;
 import com.analyst.sle.NaiveGaussian;
-import java.awt.Font;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -45,7 +44,7 @@ public class SlePanel extends javax.swing.JPanel {
         sleClearButton = new javax.swing.JButton();
         unknownTextField = new javax.swing.JTextField();
         unknownLabel = new javax.swing.JLabel();
-        solnTextField = new javax.swing.JTextField();
+        sleSolnField = new javax.swing.JTextField();
         sleCenterPanel = new javax.swing.JPanel();
         matPanel = new javax.swing.JPanel();
         matScrollPane = new javax.swing.JScrollPane();
@@ -125,6 +124,8 @@ public class SlePanel extends javax.swing.JPanel {
         sleRunButton.setText("Run");
         sleRunButton.setEnabled(false);
         sleRunButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sleRunButton.setMaximumSize(new java.awt.Dimension(93, 31));
+        sleRunButton.setMinimumSize(new java.awt.Dimension(93, 31));
         sleRunButton.setPreferredSize(new java.awt.Dimension(93, 31));
         sleRunButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,11 +151,11 @@ public class SlePanel extends javax.swing.JPanel {
         unknownLabel.setForeground(new java.awt.Color(177, 191, 222));
         unknownLabel.setText("Rows/Unknowns:");
 
-        solnTextField.setFont(new java.awt.Font("Roboto", 1, 15)); // NOI18N
-        solnTextField.setForeground(new java.awt.Color(108, 180, 64));
-        solnTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        solnTextField.setBorder(null);
-        solnTextField.setEditable(false);
+        sleSolnField.setFont(new java.awt.Font("Roboto", 1, 15)); // NOI18N
+        sleSolnField.setForeground(new java.awt.Color(108, 180, 64));
+        sleSolnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        sleSolnField.setBorder(null);
+        sleSolnField.setEditable(false);
 
         javax.swing.GroupLayout sleSouthPanelLayout = new javax.swing.GroupLayout(sleSouthPanel);
         sleSouthPanel.setLayout(sleSouthPanelLayout);
@@ -166,7 +167,7 @@ public class SlePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(sleClearButton)
                 .addGap(18, 18, 18)
-                .addComponent(solnTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addComponent(sleSolnField, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(unknownLabel)
                 .addGap(18, 18, 18)
@@ -182,7 +183,7 @@ public class SlePanel extends javax.swing.JPanel {
                     .addComponent(sleClearButton)
                     .addComponent(unknownTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(unknownLabel)
-                    .addComponent(solnTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sleSolnField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -278,7 +279,7 @@ public class SlePanel extends javax.swing.JPanel {
             try {
                 sleRunButton.setEnabled(true);
                 resPanel.setVisible(false);
-                solnTextField.setText("");
+                sleSolnField.setText("");
                 int row = Integer.parseInt(unknownTextField.getText());
                 if (row < 16 && row > 0) {
                     String[] title = new String[row];
@@ -356,7 +357,7 @@ public class SlePanel extends javax.swing.JPanel {
             }
 
             resPanel.setVisible(false);
-            solnTextField.setText("");
+            sleSolnField.setText("");
         }
     }//GEN-LAST:event_sleClearButtonMouseClicked
 
@@ -381,7 +382,7 @@ public class SlePanel extends javax.swing.JPanel {
     }
 
     public static JTextField getsolnField() {
-        return solnTextField;
+        return sleSolnField;
     }
 
     public static void setValue(double num, int i, int j) {
@@ -403,8 +404,8 @@ public class SlePanel extends javax.swing.JPanel {
     private javax.swing.JButton sleCreateButton;
     private javax.swing.JPanel sleNorthPanel;
     private javax.swing.JButton sleRunButton;
+    private static javax.swing.JTextField sleSolnField;
     private javax.swing.JPanel sleSouthPanel;
-    private static javax.swing.JTextField solnTextField;
     private javax.swing.JLabel unknownLabel;
     private static javax.swing.JTextField unknownTextField;
     // End of variables declaration//GEN-END:variables

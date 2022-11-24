@@ -42,7 +42,7 @@ public class FrPanel extends javax.swing.JPanel {
         runButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         frComboBox = new javax.swing.JComboBox<>();
-        solnField = new javax.swing.JTextField();
+        rootSolnField = new javax.swing.JTextField();
         frCenterPanel = new javax.swing.JPanel();
         resPanel = new javax.swing.JPanel();
         resScrollPane = new javax.swing.JScrollPane();
@@ -83,6 +83,9 @@ public class FrPanel extends javax.swing.JPanel {
         runButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         runButton.setForeground(new java.awt.Color(177, 191, 222));
         runButton.setText("Run");
+        runButton.setMaximumSize(new java.awt.Dimension(93, 31));
+        runButton.setMinimumSize(new java.awt.Dimension(93, 31));
+        runButton.setPreferredSize(new java.awt.Dimension(93, 31));
         runButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 runButtonMouseClicked(evt);
@@ -91,7 +94,7 @@ public class FrPanel extends javax.swing.JPanel {
 
         clearButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         clearButton.setForeground(new java.awt.Color(177, 191, 222));
-        clearButton.setText("clear");
+        clearButton.setText("Clear");
         clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clearButtonMouseClicked(evt);
@@ -105,10 +108,10 @@ public class FrPanel extends javax.swing.JPanel {
             }
         });
 
-        solnField.setForeground(new java.awt.Color(108, 180, 64));
-        solnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        solnField.setBorder(null);
-        solnField.setEditable(false);
+        rootSolnField.setForeground(new java.awt.Color(108, 180, 64));
+        rootSolnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        rootSolnField.setBorder(null);
+        rootSolnField.setEditable(false);
 
         javax.swing.GroupLayout frSouthPanelLayout = new javax.swing.GroupLayout(frSouthPanel);
         frSouthPanel.setLayout(frSouthPanelLayout);
@@ -116,11 +119,11 @@ public class FrPanel extends javax.swing.JPanel {
             frSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frSouthPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(runButton)
+                .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(clearButton)
                 .addGap(18, 18, 18)
-                .addComponent(solnField, javax.swing.GroupLayout.DEFAULT_SIZE, 2048, Short.MAX_VALUE)
+                .addComponent(rootSolnField, javax.swing.GroupLayout.DEFAULT_SIZE, 2045, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -130,10 +133,10 @@ public class FrPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frSouthPanelLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(frSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(runButton)
+                    .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearButton)
                     .addComponent(frComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(solnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rootSolnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -229,7 +232,7 @@ public class FrPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_clearButtonMouseClicked
 
     public static JTextField getsolnField() {
-        return solnField;
+        return rootSolnField;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -249,7 +252,7 @@ public class FrPanel extends javax.swing.JPanel {
     private javax.swing.JPanel resPanel;
     private javax.swing.JScrollPane resScrollPane;
     public static javax.swing.JTable resTable;
+    private static javax.swing.JTextField rootSolnField;
     private javax.swing.JButton runButton;
-    private static javax.swing.JTextField solnField;
     // End of variables declaration//GEN-END:variables
 }
