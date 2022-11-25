@@ -1,10 +1,9 @@
 package com.analyst.gui;
 
-import com.analyst.interpolation.Direct;
-import com.analyst.interpolation.Lagrange;
-import com.analyst.interpolation.NewtonsDividedDifference;
+import com.analyst.linearregression.LinearRegression;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.util.Formatter;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,17 +11,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.Axis;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
  * @author R1B3n
  */
-public class InterpolationPanel extends javax.swing.JPanel {
+public class RegressionPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SlePanel
      */
-    public InterpolationPanel() {
+    public RegressionPanel() {
         initComponents();
     }
 
@@ -35,45 +42,25 @@ public class InterpolationPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inpNorthPanel = new javax.swing.JPanel();
-        inpComboBox = new javax.swing.JComboBox<>();
-        inpCreateButton = new javax.swing.JButton();
+        lrNorthPanel = new javax.swing.JPanel();
         inputLabel = new javax.swing.JLabel();
         outputLabel = new javax.swing.JLabel();
-        inpSouthPanel = new javax.swing.JPanel();
+        lrSouthPanel = new javax.swing.JPanel();
         runButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         unknownTextField = new javax.swing.JTextField();
         unknownLabel = new javax.swing.JLabel();
         inpSolnField = new javax.swing.JTextField();
-        ipLabel = new javax.swing.JLabel();
-        ipField = new javax.swing.JTextField();
-        inpCenterPanel = new javax.swing.JPanel();
+        inpCreateButton = new javax.swing.JButton();
+        lrCenterPanel = new javax.swing.JPanel();
         matPanel = new javax.swing.JPanel();
         matScrollPane = new javax.swing.JScrollPane();
         matTable = new javax.swing.JTable();
         resPanel = new javax.swing.JPanel();
-        resScrollPane = new javax.swing.JScrollPane();
-        resTable = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
-        inpNorthPanel.setBackground(new java.awt.Color(0, 23, 39));
-
-        inpComboBox.setForeground(new java.awt.Color(177, 191, 222));
-        inpComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Direct method", "Lagrange's method", "Newton’s Divided Difference method" }));
-        inpComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        inpCreateButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        inpCreateButton.setForeground(new java.awt.Color(177, 191, 222));
-        inpCreateButton.setText("Create");
-        inpCreateButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        inpCreateButton.setPreferredSize(new java.awt.Dimension(110, 31));
-        inpCreateButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                inpCreateButtonMouseClicked(evt);
-            }
-        });
+        lrNorthPanel.setBackground(new java.awt.Color(0, 23, 39));
 
         inputLabel.setFont(new java.awt.Font("Courier", 1, 24)); // NOI18N
         inputLabel.setForeground(new java.awt.Color(161, 131, 199));
@@ -83,39 +70,30 @@ public class InterpolationPanel extends javax.swing.JPanel {
         outputLabel.setForeground(new java.awt.Color(161, 131, 199));
         outputLabel.setText("Output:");
 
-        javax.swing.GroupLayout inpNorthPanelLayout = new javax.swing.GroupLayout(inpNorthPanel);
-        inpNorthPanel.setLayout(inpNorthPanelLayout);
-        inpNorthPanelLayout.setHorizontalGroup(
-            inpNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inpNorthPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout lrNorthPanelLayout = new javax.swing.GroupLayout(lrNorthPanel);
+        lrNorthPanel.setLayout(lrNorthPanelLayout);
+        lrNorthPanelLayout.setHorizontalGroup(
+            lrNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lrNorthPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(inpComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
                 .addComponent(inputLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 778, Short.MAX_VALUE)
                 .addComponent(outputLabel)
-                .addGap(100, 100, 100)
-                .addComponent(inpCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
-        inpNorthPanelLayout.setVerticalGroup(
-            inpNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inpNorthPanelLayout.createSequentialGroup()
+        lrNorthPanelLayout.setVerticalGroup(
+            lrNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lrNorthPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(inpNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inpComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inpCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inpNorthPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(inpNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(lrNorthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputLabel)
-                    .addComponent(outputLabel)))
+                    .addComponent(outputLabel))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        add(inpNorthPanel, java.awt.BorderLayout.PAGE_START);
+        add(lrNorthPanel, java.awt.BorderLayout.PAGE_START);
 
-        inpSouthPanel.setBackground(new java.awt.Color(0, 23, 39));
+        lrSouthPanel.setBackground(new java.awt.Color(0, 23, 39));
 
         runButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         runButton.setForeground(new java.awt.Color(177, 191, 222));
@@ -155,50 +133,54 @@ public class InterpolationPanel extends javax.swing.JPanel {
         inpSolnField.setBorder(null);
         inpSolnField.setEditable(false);
 
-        ipLabel.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        ipLabel.setForeground(new java.awt.Color(177, 191, 222));
-        ipLabel.setText("Interpolation Point:");
+        inpCreateButton.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
+        inpCreateButton.setForeground(new java.awt.Color(177, 191, 222));
+        inpCreateButton.setText("Create");
+        inpCreateButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        inpCreateButton.setPreferredSize(new java.awt.Dimension(110, 31));
+        inpCreateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inpCreateButtonMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout inpSouthPanelLayout = new javax.swing.GroupLayout(inpSouthPanel);
-        inpSouthPanel.setLayout(inpSouthPanelLayout);
-        inpSouthPanelLayout.setHorizontalGroup(
-            inpSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inpSouthPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout lrSouthPanelLayout = new javax.swing.GroupLayout(lrSouthPanel);
+        lrSouthPanel.setLayout(lrSouthPanelLayout);
+        lrSouthPanelLayout.setHorizontalGroup(
+            lrSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lrSouthPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(clearButton)
                 .addGap(18, 18, 18)
-                .addComponent(inpSolnField)
+                .addComponent(inpSolnField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(unknownLabel)
                 .addGap(18, 18, 18)
                 .addComponent(unknownTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ipLabel)
-                .addGap(18, 18, 18)
-                .addComponent(ipField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(inpCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
-        inpSouthPanelLayout.setVerticalGroup(
-            inpSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inpSouthPanelLayout.createSequentialGroup()
+        lrSouthPanelLayout.setVerticalGroup(
+            lrSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lrSouthPanelLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(inpSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(lrSouthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(runButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearButton)
                     .addComponent(unknownTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(unknownLabel)
                     .addComponent(inpSolnField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ipLabel)
-                    .addComponent(ipField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inpCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
-        add(inpSouthPanel, java.awt.BorderLayout.PAGE_END);
+        add(lrSouthPanel, java.awt.BorderLayout.PAGE_END);
 
-        inpCenterPanel.setBackground(new java.awt.Color(0, 23, 39));
-        inpCenterPanel.setLayout(new java.awt.GridLayout(1, 0));
+        lrCenterPanel.setBackground(new java.awt.Color(0, 23, 39));
+        lrCenterPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         matPanel.setBackground(new java.awt.Color(0, 23, 39));
         matPanel.setVisible(false);
@@ -240,44 +222,14 @@ public class InterpolationPanel extends javax.swing.JPanel {
             .addComponent(matScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
         );
 
-        inpCenterPanel.add(matPanel);
+        lrCenterPanel.add(matPanel);
 
         resPanel.setBackground(new java.awt.Color(0, 23, 39));
         resPanel.setVisible(false);
+        resPanel.setLayout(new java.awt.BorderLayout());
+        lrCenterPanel.add(resPanel);
 
-        resTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(177, 191, 222), 3));
-        resTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        resTable.setFillsViewportHeight(true);
-        resTable.setGridColor(new java.awt.Color(177, 191, 222));
-        resTable.setRowSelectionAllowed(false);
-        resTable.setShowGrid(true);
-        resTable.getTableHeader().setReorderingAllowed(false);
-        resScrollPane.setViewportView(resTable);
-
-        javax.swing.GroupLayout resPanelLayout = new javax.swing.GroupLayout(resPanel);
-        resPanel.setLayout(resPanelLayout);
-        resPanelLayout.setHorizontalGroup(
-            resPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(resScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-        );
-        resPanelLayout.setVerticalGroup(
-            resPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(resScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-        );
-
-        inpCenterPanel.add(resPanel);
-
-        add(inpCenterPanel, java.awt.BorderLayout.CENTER);
+        add(lrCenterPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void inpCreateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inpCreateButtonMouseClicked
@@ -291,11 +243,8 @@ public class InterpolationPanel extends javax.swing.JPanel {
                     String[] title = new String[]{"X", "Y"};
 
                     DefaultTableModel modelMat = new DefaultTableModel(title, n);
-                    title[0] = "Co-efficient no.";
-                    title[1] = "Values";
                     DefaultTableModel modelRes = new DefaultTableModel(title, n);
                     matTable.setModel(modelMat);
-                    resTable.setModel(modelRes);
                     matScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
                     matPanel.setVisible(true);
                     repaint();
@@ -320,15 +269,10 @@ public class InterpolationPanel extends javax.swing.JPanel {
             if (!bt.isEnabled()) {
                 return;
             }
-
-            switch (inpComboBox.getSelectedIndex()) {
-                case 0 ->
-                    Direct.run();
-                case 1 ->
-                    Lagrange.run();
-                case 2 ->
-                    NewtonsDividedDifference.run();
-            }
+            resPanel.setVisible(false);
+            resPanel.removeAll();
+            LinearRegression.run();
+            resPanel.setVisible(true);
         }
     }//GEN-LAST:event_runButtonMouseClicked
 
@@ -355,10 +299,6 @@ public class InterpolationPanel extends javax.swing.JPanel {
         return matTable;
     }
 
-    public static JTable getRes() {
-        return resTable;
-    }
-
     public static JPanel getResPanel() {
         return resPanel;
     }
@@ -367,34 +307,61 @@ public class InterpolationPanel extends javax.swing.JPanel {
         return inpSolnField;
     }
 
-    public static void setValue(double num, int i, int j) {
-        Formatter formatter = new Formatter();
-        if (j == 0) {
-            formatter.format("%.0f", num);
-        } else {
-            formatter.format("%.5f", num);
+    public static void plotModel(double mata[], double matb[], double slp, double icp, int n) {
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries series1 = new XYSeries("Original points");
+        XYSeries series2 = new XYSeries("Regression line");
+        for (int i = 0; i <= n; i++) {
+            series1.add(mata[i], matb[i]);
+            series2.add(mata[i], icp + slp * mata[i]);
         }
-        resTable.getModel().setValueAt(formatter, i, j);
+        dataset.addSeries(series1);
+        dataset.addSeries(series2);
+
+        JFreeChart chart = ChartFactory.createXYLineChart("Linear Regression Model",
+                "X-Axis", "Y-Axis", dataset);
+        chart.setBackgroundPaint(new Color(0, 23, 39));
+        chart.getTitle().setPaint(new Color(161, 131, 199));
+
+        XYPlot plot = (XYPlot) chart.getPlot();
+        plot.setBackgroundPaint(new Color(0, 23, 39));
+        setAxisFontColor(((XYPlot) plot).getDomainAxis(), new Color(177, 191, 222));
+        setAxisFontColor(((XYPlot) plot).getRangeAxis(), new Color(177, 191, 222));
+
+        XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
+        renderer.setSeriesLinesVisible(0, false);
+        renderer.setSeriesShapesVisible(0, true);
+        renderer.setSeriesLinesVisible(1, true);
+        renderer.setSeriesShapesVisible(1, false);
+
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setBackground(new Color(0, 23, 39));
+
+        resPanel.add(panel, BorderLayout.CENTER);
+    }
+
+    private static void setAxisFontColor(Axis axis, Color fontColor) {
+        if (!fontColor.equals(axis.getLabelPaint())) {
+            axis.setLabelPaint(fontColor);
+        }
+        if (!fontColor.equals(axis.getTickLabelPaint())) {
+            axis.setTickLabelPaint(fontColor);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearButton;
-    private javax.swing.JPanel inpCenterPanel;
-    public static javax.swing.JComboBox<String> inpComboBox;
     private javax.swing.JButton inpCreateButton;
-    private javax.swing.JPanel inpNorthPanel;
     private static javax.swing.JTextField inpSolnField;
-    private javax.swing.JPanel inpSouthPanel;
     private javax.swing.JLabel inputLabel;
-    public static javax.swing.JTextField ipField;
-    private javax.swing.JLabel ipLabel;
+    private javax.swing.JPanel lrCenterPanel;
+    private javax.swing.JPanel lrNorthPanel;
+    private javax.swing.JPanel lrSouthPanel;
     private javax.swing.JPanel matPanel;
     private javax.swing.JScrollPane matScrollPane;
     private static javax.swing.JTable matTable;
     private javax.swing.JLabel outputLabel;
     private static javax.swing.JPanel resPanel;
-    private javax.swing.JScrollPane resScrollPane;
-    private static javax.swing.JTable resTable;
     private javax.swing.JButton runButton;
     private javax.swing.JLabel unknownLabel;
     private static javax.swing.JTextField unknownTextField;

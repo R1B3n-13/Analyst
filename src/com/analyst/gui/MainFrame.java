@@ -84,11 +84,13 @@ public class MainFrame extends javax.swing.JFrame {
         odeButton = new javax.swing.JButton();
         iButton = new javax.swing.JButton();
         inpButton = new javax.swing.JButton();
+        lrButton = new javax.swing.JButton();
         calcSlePanel = new com.analyst.gui.SlePanel();
         frPanel = new com.analyst.gui.FrPanel();
         odePanel = new com.analyst.gui.OdePanel();
         integrationPanel = new com.analyst.gui.IntegrationPanel();
         interpolationPanel = new com.analyst.gui.InterpolationPanel();
+        regressionPanel = new com.analyst.gui.RegressionPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -258,6 +260,9 @@ public class MainFrame extends javax.swing.JFrame {
         sleButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
         sleButton.setBorderPainted(false);
         sleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sleButton.setMaximumSize(new java.awt.Dimension(123, 49));
+        sleButton.setMinimumSize(new java.awt.Dimension(123, 49));
+        sleButton.setPreferredSize(new java.awt.Dimension(123, 49));
         sleButton.setBackground(new java.awt.Color(101, 89, 94, 50));
         sleButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -271,6 +276,9 @@ public class MainFrame extends javax.swing.JFrame {
         odeButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
         odeButton.setBorderPainted(false);
         odeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        odeButton.setMaximumSize(new java.awt.Dimension(123, 49));
+        odeButton.setMinimumSize(new java.awt.Dimension(123, 49));
+        odeButton.setPreferredSize(new java.awt.Dimension(123, 49));
         odeButton.setBackground(new java.awt.Color(101, 89, 94, 50));
         odeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -284,6 +292,9 @@ public class MainFrame extends javax.swing.JFrame {
         iButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
         iButton.setBorderPainted(false);
         iButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iButton.setMaximumSize(new java.awt.Dimension(123, 49));
+        iButton.setMinimumSize(new java.awt.Dimension(123, 49));
+        iButton.setPreferredSize(new java.awt.Dimension(123, 49));
         iButton.setBackground(new java.awt.Color(101, 89, 94, 50));
         iButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -297,10 +308,29 @@ public class MainFrame extends javax.swing.JFrame {
         inpButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
         inpButton.setBorderPainted(false);
         inpButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        inpButton.setMaximumSize(new java.awt.Dimension(123, 49));
+        inpButton.setMinimumSize(new java.awt.Dimension(123, 49));
+        inpButton.setPreferredSize(new java.awt.Dimension(123, 49));
         inpButton.setBackground(new java.awt.Color(101, 89, 94, 50));
         inpButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 inpButtonMouseClicked(evt);
+            }
+        });
+
+        lrButton.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lrButton.setForeground(new java.awt.Color(172, 179, 186));
+        lrButton.setText("Linear Regression");
+        lrButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
+        lrButton.setBorderPainted(false);
+        lrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton.setMaximumSize(new java.awt.Dimension(123, 49));
+        lrButton.setMinimumSize(new java.awt.Dimension(123, 49));
+        lrButton.setPreferredSize(new java.awt.Dimension(123, 49));
+        lrButton.setBackground(new java.awt.Color(101, 89, 94, 50));
+        lrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lrButtonMouseClicked(evt);
             }
         });
 
@@ -320,26 +350,29 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(odeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(iButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lrButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 501, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         indexPanelLayout.setVerticalGroup(
             indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(indexPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(21, 21, 21)
                 .addComponent(indexLabel)
                 .addGap(18, 18, 18)
                 .addComponent(frButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sleButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(odeButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(iButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inpButton)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(sleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(odeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(iButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(inpButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lrButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         mainPanel.add(indexPanel, "indexPanel");
@@ -359,6 +392,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         interpolationPanel.setName("interpolationPanel"); // NOI18N
         mainPanel.add(interpolationPanel, "card8");
+
+        regressionPanel.setName("regressionPanel"); // NOI18N
+        mainPanel.add(regressionPanel, "card9");
 
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
         mainPanel.getAccessibleContext().setAccessibleName("");
@@ -481,6 +517,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_inpButtonMouseClicked
 
+    private void lrButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButtonMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            mainPanel.nextSlidingPanel(10, regressionPanel, JSlidingPane.Direction.Left);
+            titleBar.setBackground(new Color(0, 14, 26));
+            titleBar.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 14, 26)));
+        }
+    }//GEN-LAST:event_lrButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -529,10 +573,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel introLogoLabel;
     private keeptoo.KGradientPanel introPanel;
     private javax.swing.JLabel introTextLabel;
+    private javax.swing.JButton lrButton;
     private static com.analyst.gui.JSlidingPane mainPanel;
     private javax.swing.JLabel minimizeLabel;
     private javax.swing.JButton odeButton;
     private com.analyst.gui.OdePanel odePanel;
+    private com.analyst.gui.RegressionPanel regressionPanel;
     private javax.swing.JButton sleButton;
     private javax.swing.JPanel titleBar;
     // End of variables declaration//GEN-END:variables
