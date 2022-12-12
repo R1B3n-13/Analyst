@@ -428,11 +428,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_closeLabelMouseClicked
 
     private void closeLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeLabelMouseEntered
-        closeLabel.setIcon(new javax.swing.ImageIcon("src/com/analyst/gui/img/closeLabelHover.png"));
+        closeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/analyst/gui/img/closeLabelHover.png")));
     }//GEN-LAST:event_closeLabelMouseEntered
 
     private void closeLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeLabelMouseExited
-        closeLabel.setIcon(new javax.swing.ImageIcon("src/com/analyst/gui/img/closeLabel.png"));
+        closeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/analyst/gui/img/closeLabel.png")));
     }//GEN-LAST:event_closeLabelMouseExited
 
     private void minimizeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeLabelMouseClicked
@@ -443,11 +443,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_minimizeLabelMouseClicked
 
     private void minimizeLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeLabelMouseEntered
-        minimizeLabel.setIcon(new javax.swing.ImageIcon("src/com/analyst/gui/img/minimizeLabelHover.png"));
+        minimizeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/analyst/gui/img/minimizeLabelHover.png")));
     }//GEN-LAST:event_minimizeLabelMouseEntered
 
     private void minimizeLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeLabelMouseExited
-        minimizeLabel.setIcon(new javax.swing.ImageIcon("src/com/analyst/gui/img/minimizeLabel.png"));
+        minimizeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/analyst/gui/img/minimizeLabel.png")));
     }//GEN-LAST:event_minimizeLabelMouseExited
 
     private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
@@ -466,11 +466,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backLabelMouseClicked
 
     private void backLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseEntered
-        backLabel.setIcon(new javax.swing.ImageIcon("src/com/analyst/gui/img/backLabelHover.png"));
+        backLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/analyst/gui/img/backLabelHover.png")));
     }//GEN-LAST:event_backLabelMouseEntered
 
     private void backLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseExited
-        backLabel.setIcon(new javax.swing.ImageIcon("src/com/analyst/gui/img/backLabel.png"));
+        backLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/analyst/gui/img/backLabel.png")));
     }//GEN-LAST:event_backLabelMouseExited
 
     private void formWindowDeiconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeiconified
